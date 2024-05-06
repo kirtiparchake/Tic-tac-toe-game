@@ -18,33 +18,45 @@ function Page() {
     const newData = [...data]; // Make a copy of the data array
     if (count % 2 === 0) {
       newData[num] = "x";
-      
+      document.querySelectorAll(".square").forEach(square => {
+        square.style.cursor = `url('${circle_icon}'), auto`;
+      });
     } else {
       newData[num] = "o";
-      
-    } 
+      document.querySelectorAll(".square").forEach(square => {
+        square.style.cursor = `url('${cross_icon}'), auto`;
+      });
+    }
   
     // Update the state and increment count
     data = newData;
+    if(count===9){
+      won();
+    }
     setCount(count + 1);
     checkWin(newData[num]);
-    
+  
     // Update the UI by setting the square content
     e.target.innerHTML = newData[num] === "x" ? `<img src='${cross_icon}'>` : `<img src='${circle_icon}'>`;
   };
+  
+  
   const won = (winner) => {
     setLock(true);
-    // Here you should handle the winning scenario
-    console.log("Player " + winner + " won!");
-    if(winner =="x"){
-      titleRef.current.innerHTML =`Congrats :-X win`
-    }if(winner =="y"){
-      titleRef.current.innerHTML =`Congrats :-O win`
-    } else {
-      titleRef.current.innerHTML = "You lose try again";
 
+    document.querySelectorAll(".square").forEach(square => {
+      square.style.cursor = "not-allowed";
+    })
+
+    if (winner === "x") {
+      titleRef.current.innerHTML = "Congrats :-X win";
+    } else if (winner === "o") {
+      titleRef.current.innerHTML = "Congrats :-O win";
+    } else {
+      titleRef.current.innerHTML = "You lose, try again";
     }
   };
+  
   const resetGame = () => {
     setCount(0);
     setLock(false);
