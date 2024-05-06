@@ -9,7 +9,7 @@ function Page() {
   
   let [count, setCount] = useState(0);
   let [lock, setLock] = useState(false);
-  let tittleRef = useRef(null)
+  let titleRef = useRef(null)
   const toggle = (e, num) => {
     if (lock) {
       return;
@@ -37,18 +37,18 @@ function Page() {
     // Here you should handle the winning scenario
     console.log("Player " + winner + " won!");
     if(winner =="x"){
-      tittleRef.current.innerHTML =`Congrats :-X win`
+      titleRef.current.innerHTML =`Congrats :-X win`
     }else {
-      tittleRef.current.innerHTML =`Congrats :-O win`
+      titleRef.current.innerHTML =`Congrats :-O win`
     }{
-      tittleRef.current.innerHTML = "Tic Tac Toe Game In <span>React</span>";
+      titleRef.current.innerHTML = "You lose try again";
 
     }
   };
   const resetGame = () => {
     setCount(0);
     setLock(false);
-    tittleRef.current.innerHTML = "Tic Tac Toe Game In <span>React</span>";
+    titleRef.current.innerHTML = "Tic Tac Toe Game In <span>React</span>";
     data = ["", "", "", "", "", "", "", "", ""];
     const squares = document.querySelectorAll(".square");
     squares.forEach(square => {
@@ -82,7 +82,7 @@ function Page() {
    
   return (
     <div className="main">
-        <h1 ref={tittleRef}>Tic Tac Toe Game In <span>React</span>
+        <h1 ref={titleRef}>Tic Tac Toe Game In <span>React</span>
         </h1>
       <div className="conatiner">
         <div className="row1">
