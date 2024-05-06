@@ -38,9 +38,9 @@ function Page() {
     console.log("Player " + winner + " won!");
     if(winner =="x"){
       titleRef.current.innerHTML =`Congrats :-X win`
-    }else {
+    }if(winner =="y"){
       titleRef.current.innerHTML =`Congrats :-O win`
-    }{
+    } else {
       titleRef.current.innerHTML = "You lose try again";
 
     }
